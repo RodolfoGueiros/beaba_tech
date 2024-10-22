@@ -2,8 +2,8 @@ package com.generation.beaba_tech.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
-//import javax.persistence.*;
-import javax.validation.constraints.*;
+//import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 
 @Data
 @Entity
