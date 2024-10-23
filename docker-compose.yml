@@ -2,9 +2,9 @@ services:
   postgres:    
     image: 'postgres:latest'    
     environment:        
-      - 'POSTGRES_DB=${ESCOLA_DB}'       
-      - 'POSTGRES_USER=${ESCOLA_USER}'       
-      - 'POSTGRES_PASSWORD=${ESCOLA_PASSWORD}'    
+      - 'POSTGRES_DB=ESCOLA_DB'       
+      - 'POSTGRES_USER=root'       
+      - 'POSTGRES_PASSWORD=root'    
     ports:      
-      - '5433:5432'
+      - '5432:5432'
     
