@@ -1,3 +1,4 @@
+/*
 package com.generation.beaba_tech.config;
 
 import org.springframework.context.annotation.Bean;
@@ -55,3 +56,4 @@ public class SwaggerConfig {
         return Arrays.asList(new SecurityReference("JWT", authorizationScopes));
     }
 }
+*/
