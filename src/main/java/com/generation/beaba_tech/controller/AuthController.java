@@ -5,7 +5,7 @@ import com.generation.beaba_tech.dto.JwtAuthResponseDTO;
 import com.generation.beaba_tech.entity.Funcionario;
 import com.generation.beaba_tech.security.JwtTokenProvider;
 import com.generation.beaba_tech.service.FuncionarioService;
-import io.swagger.annotations.*;
+//import io.swagger.annotations.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -14,12 +14,12 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/auth")
 @RequiredArgsConstructor
-@Api(tags = "Autenticação")
+//@Api(tags = "Autenticação")
 public class AuthController {
 
     private final AuthenticationManager authenticationManager;
@@ -27,7 +27,7 @@ public class AuthController {
     private final FuncionarioService funcionarioService;
 
     @PostMapping("/login")
-    @ApiOperation("Login de funcionário")
+//    @ApiOperation("Login de funcionário")
     public ResponseEntity<JwtAuthResponseDTO> login(@Valid @RequestBody LoginRequestDTO loginRequest) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
@@ -43,7 +43,7 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    @ApiOperation("Registrar novo funcionário")
+//    @ApiOperation("Registrar novo funcionário")
     public ResponseEntity<Funcionario> register(@Valid @RequestBody Funcionario funcionario) {
         return ResponseEntity.ok(funcionarioService.save(funcionario));
     }
