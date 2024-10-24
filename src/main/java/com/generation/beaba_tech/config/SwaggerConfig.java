@@ -1,59 +1,60 @@
-/*
 package com.generation.beaba_tech.config;
 
+import io.swagger.v3.oas.models.ExternalDocumentation;
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Contact;
+import io.swagger.v3.oas.models.info.Info;
+import io.swagger.v3.oas.models.info.License;
+import io.swagger.v3.oas.models.responses.ApiResponse;
+import io.swagger.v3.oas.models.responses.ApiResponses;
+import org.springdoc.core.customizers.OpenApiCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import springfox.documentation.builders.ApiInfoBuilder;
-import springfox.documentation.builders.PathSelectors;
-import springfox.documentation.builders.RequestHandlerSelectors;
-import springfox.documentation.service.*;
-import springfox.documentation.spi.DocumentationType;
-import springfox.documentation.spi.service.contexts.SecurityContext;
-import springfox.documentation.spring.web.plugins.Docket;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
-
-import java.util.Arrays;
-import java.util.List;
 
 @Configuration
-@EnableSwagger2
 public class SwaggerConfig {
+    @Bean
+    public OpenAPI springDesafioGenAPI() {
+        return new OpenAPI().info(
+                new Info().title("Rest API for Beabá Tech® website")
+                        .description("Rest API for Beabá Tech® website made with hours of code by Rodolfo Gueiros, Nicole Xavier e Larissa Silva")
+                        .version("v0.0.1")
+                        .license(new License()
+                                .name("Rodolfo Gueiros")
+                                .url("https://github.com/RodolfoGueiros"))
+                        .contact(new Contact()
+                                .name("Rodolfo Gueiros")
+                                .url("https://linkedin.com/rodolfogueiros")
+                                .email("rodollfo.marques@gmail.com")))
+
+                .externalDocs(new ExternalDocumentation()
+                        .description("Github")
+                        .url("https://github.com/RodolfoGueiros")
+                );
+    }
 
     @Bean
-    public Docket api() {
-        return new Docket(DocumentationType.SWAGGER_2)
-                .select()
-                .apis(RequestHandlerSelectors.basePackage("com.generation.beaba_tech.controller"))
-                .paths(PathSelectors.any())
-                .build()
-                .apiInfo(apiInfo())
-                .securityContexts(Arrays.asList(securityContext()))
-                .securitySchemes(Arrays.asList(apiKey()));
+    public OpenApiCustomizer customerGlobalHeaderOpenApiCustomiser() {
+
+        return openApi -> {
+            openApi.getPaths().values().forEach(pathItem -> pathItem.readOperations().forEach(operation -> {
+
+                ApiResponses apiResponses = operation.getResponses();
+
+                apiResponses.addApiResponse("200", createApiResponse("Sucesso!"));
+                apiResponses.addApiResponse("201", createApiResponse("Objeto Persistido!"));
+                apiResponses.addApiResponse("204", createApiResponse("Objeto Excluído!"));
+                apiResponses.addApiResponse("400", createApiResponse("Erro na Requisição!"));
+                apiResponses.addApiResponse("404", createApiResponse("Objeto Não Encontrado!"));
+                apiResponses.addApiResponse("500", createApiResponse("Erro na Aplicação!"));
+
+            }));
+        };
     }
 
-    private ApiInfo apiInfo() {
-        return new ApiInfoBuilder()
-                .title("School API")
-                .description("API para gerenciamento de escola")
-                .version("1.0.0")
-                .build();
-    }
+    private ApiResponse createApiResponse(String message) {
 
-    private ApiKey apiKey() {
-        return new ApiKey("JWT", "Authorization", "header");
-    }
+        return new ApiResponse().description(message);
 
-    private SecurityContext securityContext() {
-        return SecurityContext.builder()
-                .securityReferences(defaultAuth())
-                .build();
-    }
-
-    private List<SecurityReference> defaultAuth() {
-        AuthorizationScope authorizationScope = new AuthorizationScope("global", "accessEverything");
-        AuthorizationScope[] authorizationScopes = new AuthorizationScope[1];
-        authorizationScopes[0] = authorizationScope;
-        return Arrays.asList(new SecurityReference("JWT", authorizationScopes));
     }
 }
-*/
