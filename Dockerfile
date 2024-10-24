@@ -2,7 +2,7 @@
 FROM ubuntu:latest AS build
 
 # Atualiza os pacotes e instala o JDK 21
-RUN apt-get update && apt-get install openjdk:21-jdk-oracle -y
+RUN apt-get update && apt-get install openjdk-21-jdk -y
 
 # Define o diretório de trabalho
 WORKDIR /app
