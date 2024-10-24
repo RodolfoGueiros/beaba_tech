@@ -1,44 +1,42 @@
 package com.generation.beaba_tech.security;
 
 import com.generation.beaba_tech.entity.Funcionario;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-import java.util.Collections;
+import java.util.List;
 
-@AllArgsConstructor
-@Getter
-public class UserPrincipal implements UserDetails {
-    private Long id;
-    private String nome;
-    private String email;
-    private String senha;
+@Service
+public class UserDetailsImpl implements UserDetails {
 
-    public static UserPrincipal create(Funcionario funcionario) {
-        return new UserPrincipal(
-                funcionario.getId(),
-                funcionario.getNome(),
-                funcionario.getEmail(),
-                funcionario.getSenha()
-        );
+    private static final long serialVersionUID = 1L;
+
+    private String userName;
+    private String password;
+    private List<GrantedAuthority> authorities;
+
+    public UserDetailsImpl(Funcionario funcionario) {
+        this.userName = funcionario.getEmail();
+        this.password = funcionario.getSenha();
     }
+
+    public UserDetailsImpl() {}
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.emptyList();
+        return authorities;
     }
 
     @Override
     public String getPassword() {
-        return senha;
+        return password;
     }
 
     @Override
     public String getUsername() {
-        return email;
+        return userName;
     }
 
     @Override
