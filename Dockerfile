@@ -1,20 +1,26 @@
-# Use a imagem oficial do Maven para compilar o projeto
-FROM maven:3.8.5-openjdk-21 AS build
+# Etapa de build
+FROM ubuntu:latest AS build
 
-# Defina o diretório de trabalho
+# Atualiza os pacotes e instala o JDK 21
+RUN apt-get update && apt-get install openjdk-21-jdk -y
+
+# Define o diretório de trabalho
 WORKDIR /app
 
-# Copie os arquivos de configuração e dependências do Maven
+# Copia todo o conteúdo do projeto para o diretório de trabalho
 COPY . .
 
-# Execute o Maven para compilar o projeto
-RUN mvn clean package -DskipTests
+# Instala o Maven e constrói o projeto
+RUN apt-get install maven -y && mvn clean install
 
-# Use a imagem do OpenJDK para executar a aplicação
-FROM openjdk:21-jdk-alpine
+# Etapa final para rodar a aplicação
+FROM eclipse-temurin:21-jdk-slim
 
-# Copie o JAR gerado pela etapa anterior de build
+# Exponha a porta em que a aplicação estará rodando
+EXPOSE 8080
+
+# Copia o arquivo JAR da etapa de build
 COPY --from=build /app/target/*.jar app.jar
 
-# Defina o comando de entrada para rodar o JAR
+# Define o comando de inicialização
 ENTRYPOINT ["java", "-jar", "app.jar"]
