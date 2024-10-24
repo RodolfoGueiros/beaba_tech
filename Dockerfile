@@ -2,7 +2,7 @@
 FROM ubuntu:latest AS build
 
 # Atualiza os pacotes e instala o JDK 21
-RUN apt-get update && apt-get install openjdk-21-jdk -y
+RUN apt-get update && apt-get install openjdk:21-jdk-oracle -y
 
 # Define o diretório de trabalho
 WORKDIR /app
@@ -14,7 +14,7 @@ COPY . .
 RUN apt-get install maven -y && mvn clean install
 
 # Etapa final para rodar a aplicação
-FROM eclipse-temurin:21-jdk-slim
+FROM openjdk:21-jdk-oracle
 
 # Exponha a porta em que a aplicação estará rodando
 EXPOSE 8080
