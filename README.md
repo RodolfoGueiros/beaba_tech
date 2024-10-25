@@ -1,3 +1,28 @@
+<h1><a href="https://brazil.generation.org/"><img src="https://github.com/RodolfoGueiros/beaba_tech/blob/main/img/generation.png" alt="Generation" width="90" height="44"></a> CRUD Bootcamp AWS 2º Turma</h1>
+<body>
+  <p>Proposta de projeto desenvolvimento de uma API que realiza um CRUD e roda deploy no cloud do render. O projeto segue o padrão MVC</p>
+  <h2>Desenvolvedores</h2>
+    <div class="image-container">
+        <a href="https://github.com/RodolfoGueiros" target="_blank">
+          <img src="https://github.com/RodolfoGueiros/beaba_tech/blob/main/img/nicole.jpeg" alt="Imagem 1" width="100" height="100">
+        </a>
+        <a href=https://github.com/Larissa-Fabiana" target="_blank">
+          <img src="https://github.com/RodolfoGueiros/beaba_tech/blob/main/img/rodolfo.jpeg" alt="Imagem 2" width="100" height="100">
+        </a>
+        <a href="https://github.com/NicXavier" target="_blank">
+          <img src="https://github.com/RodolfoGueiros/beaba_tech/blob/main/img/larissa.jpeg" alt="Imagem 3" width="100" height="100">
+        </a>
+    </div>
+  <h2>Stacks usadas</h2>
+  <p>Linguaguem <b>Java</b>, Framework <b>Spring Boot</b>, plugin usado foi o <b>Maven</b> com documentação <b>Swagger</b>, geração de token com o <b>jwt token</b>, <b>Docker</b> e deploy no <a href="https://render.com">Render.com</a></p>
+    <div class="image-container">
+        <img src="https://github.com/RodolfoGueiros/beaba_tech/blob/main/img/icons8-logo-java-coffee-cup-48.png" alt="Imagem 1" width="48" height="48">
+        <img src="https://github.com/RodolfoGueiros/beaba_tech/blob/main/img/icons8-logotipo-da-primavera-48.png" alt="Imagem 2" width="48" height="48">
+        <img src="https://github.com/RodolfoGueiros/beaba_tech/blob/main/img/icons8-logotipo-do-docker-48.png" alt="Imagem 3" width="48" height="48">
+        <img src="https://github.com/RodolfoGueiros/beaba_tech/blob/main/img/icons8-jwt-48.png" alt="Imagem 3" width="48" height="48">
+    </div> 
+
+<!--
 Arquitetura do Projeto
 O projeto segue uma arquitetura em camadas, que é amplamente utilizada em sistemas baseados em APIs REST. Isso significa que o código está organizado de maneira que cada camada tem uma responsabilidade bem definida, garantindo a separação de preocupações, facilitando a manutenção e a escalabilidade do sistema.
 A arquitetura é composta pelas seguintes camadas principais:
@@ -58,3 +83,5 @@ O Cadastro de Funcionários e o Login são as únicas rotas acessíveis sem aute
 A autenticação é implementada com Spring Security, que garante que todas as outras rotas só sejam acessíveis mediante a apresentação de um token válido.
 Conclusão
 Essa API foi projetada para ser escalável, segura e eficiente, com uma arquitetura modular que separa responsabilidades claras entre as camadas de Controller, Service, Repository e Model. O uso de tecnologias como Java, Spring Boot, JPA e JWT garante que o projeto seja robusto, seguro e de fácil manutenção, pronto para ser adaptado a diferentes contextos escolares.
+-->
+</body>
